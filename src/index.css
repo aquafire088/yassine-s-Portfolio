@@ -1,25 +1,24 @@
-
-
-
-/* 1. Google Font import MUST be first */
 @import url("https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
-/* 2. Tailwind layers */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* ❌ REMOVE THIS — causes the error */
-/* @import "tailwindcss"; */
+html,
+body {
+  width: 100dvw;
+  overflow: hidden;
+  height: 100dvh;
+  background-image: url("/images/wallpaper.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
-/* 3. Your theme config */
 @theme {
   --font-georama: "Georama", sans-serif;
   --font-roboto: "Roboto Mono", monospace;
   --breakpoint-3xl: 1920px;
 }
 
-/* 4. Custom utilities */
 @utility flex-center {
   @apply flex items-center justify-center;
 }
@@ -27,9 +26,6 @@
 @utility col-center {
   @apply flex flex-col items-center justify-center;
 }
-
-
-
 
 @utility abs-center {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
@@ -397,16 +393,4 @@
       }
     }
   }
-
-  /* 5. Normal CSS */
-html,
-body {
-  width: 100dvw;
-  height: 100dvh;
-  overflow: hidden;
-  background-image: url("/images/wallpaper.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
 }
