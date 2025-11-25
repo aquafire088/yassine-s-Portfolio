@@ -12,6 +12,7 @@ import Finder from '#window/Finder';
 import Text from '#window/Text';
 import Image from '#window/Image';
 import Contact from "./window/Contact";
+import Home from '#components/Home';
 
 
 
@@ -25,6 +26,10 @@ function App() {
       <Navbar />
       <Welcome />
       <Dock />
+      <Home/>
+
+
+      
       <Text/>
       <Safari/>
       <Resume/>

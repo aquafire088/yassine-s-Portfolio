@@ -36,27 +36,42 @@ const Safari = () => {
             <Copy className='icon'/>
         </div>
     </div>
-    <div className ="blog">
-        <h2>My Project</h2>
-            <div className='space-y-8'>
-                {blogPosts.map(({id, image, title, date, link})=>
-                (
-                    <div key={id} className='blog-post'>
-                        <div className='col-span2'>
-                            <img src={image} alt={title} />
+    
+    {/* Compact Blog Section */}
+    <div className="blog-scroll-container">
+        <div className="blog-container">
+            <h2 className="blog-title">My Project</h2>
+            <div className="blog-posts-grid">
+                {blogPosts.map(({id, image, title, date, link}) => (
+                    <div key={id} className="blog-post-card">
+                        <div className="blog-image-wrapper">
+                            <div className="blog-image-container">
+                                <img 
+                                    src={image} 
+                                    alt={title} 
+                                    className="blog-image"
+                                />
+                            </div>
                         </div>
-
-                        <div className='content'>
-                            <p>{date}</p>
-                            <h3>{title}</h3>
-                            <a href={link} target='_blank' rel="noopener noreferrer">
-                                Check out full project <MoveRight className="icon-hover"/>
+                        
+                        <div className="blog-content">
+                            <p className="blog-date">{date}</p>
+                            <h3 className="blog-post-title">{title}</h3>
+                            <a 
+                                href={link} 
+                                target='_blank' 
+                                rel="noopener noreferrer"
+                                className="blog-link"
+                            >
+                                Check out full project 
+                                <MoveRight className="link-arrow"/>
                             </a>
                         </div>
                     </div>                 
-                   ))}
+                ))}
             </div>
         </div>
+    </div>
     </>
   )
 }

@@ -19,23 +19,49 @@ const Finder = () => {
       if (["fig", "url"].includes(item.fileType) && item.href)
         return window.open(item.href, "_blank");
     };
-    const renderList = (name, items) => (
-        <div>
-            <h3>{name}</h3>
-            <ul>
-            {items.map((item) => (
-                <li
-                key={item.id}
-                onClick={() => setActiveLocation(item)}
-                className={clsx(item.id === activeLocation.id ? "active" : "not-active")}
-                >
-                <img src={item.icon} alt={item.name} className="w-4" />
-                <p className="text-sm font-medium truncate">{item.name}</p>
-                </li>
-            ))}
-            </ul>
-        </div>
-    );
+    //const renderList = (name, items) => (
+      //  <div>
+        //    <h3>{name}</h3>
+          //  <ul>
+            //{items.map((item) => (
+              //  <li
+                //key={item.id}
+                //onClick={() => setActiveLocation(item)}
+                //className={clsx(item.id === activeLocation.id ? "active" : "not-active")}
+                //>
+                //<img src={item.icon} alt={item.name} className="w-4" />
+                //<p className="text-sm font-medium truncate">{item.name}</p>
+                //</li>
+            //))}
+            //</ul>
+        //</div>
+    //);
+
+const renderList = (name, items, activeLocation, setActiveLocation) => (
+  <div className="space-y-2">
+    <h3 className="text-xs font-semibold text-gray-500 uppercase">{name}</h3>
+
+    <ul className="space-y-1">
+      {items.map((item) => (
+        <li
+          key={item.id}
+          onClick={() => setActiveLocation(item)}
+          className={clsx(
+            "flex items-center gap-2 px-2 py-1 rounded cursor-pointer transition",
+            item.id === activeLocation.id
+              ? "active bg-gray-200 font-semibold"
+              : "not-active hover:bg-gray-100"
+          )}
+        >
+          <img src={item.icon} alt={item.name} className="w-4 h-4" />
+
+          <p className="text-sm truncate">{item.name}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 
 
   return (
@@ -47,19 +73,20 @@ const Finder = () => {
 
       <div className="bg-white flex h-full">
         <div className="sidebar">
-            {renderList("Favorites",Object.values(locations))}
-            {renderList("Work",locations.work.children)}
+            {renderList("Favorites",Object.values(locations), activeLocation, setActiveLocation)}
+            {renderList("Work",locations.work.children, activeLocation, setActiveLocation)}
         </div>
       <ul className='content'>
-            {activeLocation.children.map((item) => (
-                <li
-                   key={item.id}
-                   className={item.position}
-                   onClick={()=>openItem(item)} >
-                    <img src={item.icon} alt={item.name} />
-                    <p>{item.name}</p>
-                </li>
-            ))}
+            <div className="w-full h-full grid grid-cols-3 gap-12 content-start items-start justify-items-center">
+                {activeLocation.children.map((item) => (
+                    <div key={item.id} className="flex flex-col items-center w-40">
+                    <img src={item.icon} alt={item.name} className="w-20" />
+                    <p className="text-center mt-3 text-sm font-medium leading-tight">
+                        {item.name}
+                    </p>
+                    </div>
+                ))}
+            </div>
       </ul>
       </div>
     </>
